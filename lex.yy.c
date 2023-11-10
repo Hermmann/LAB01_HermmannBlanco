@@ -712,8 +712,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "LAB0.l"
-#line 2 "LAB0.l"
+#line 1 "LAB01.l"
+#line 2 "LAB01.l"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -968,7 +968,7 @@ YY_DECL
 		}
 
 	{
-#line 87 "LAB0.l"
+#line 87 "LAB01.l"
 
 
 
@@ -1041,127 +1041,127 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 90 "LAB0.l"
+#line 90 "LAB01.l"
 { printf("CREATE TABLE ");} ; return CREATETABLE;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 91 "LAB0.l"
+#line 91 "LAB01.l"
 { printf("DROP TABLE "); }   ; return DROPTABLE;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 92 "LAB0.l"
+#line 92 "LAB01.l"
 { printf("SELECT "); } ; return SELECT;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 93 "LAB0.l"
+#line 93 "LAB01.l"
 { printf("WHERE "); }   return WHERE;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 94 "LAB0.l"
+#line 94 "LAB01.l"
 { printf("GROUP BY "); }  return GROUPBY;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 95 "LAB0.l"
+#line 95 "LAB01.l"
 { printf("ORDER BY "); }  return ORDERBY;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 96 "LAB0.l"
+#line 96 "LAB01.l"
 { printf("INSERT "); } return  INSERT;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 97 "LAB0.l"
+#line 97 "LAB01.l"
 { printf("DELETE "); } return DELETE;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 98 "LAB0.l"
+#line 98 "LAB01.l"
 { printf("UPDATE "); } return UPDATE ; 
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 99 "LAB0.l"
+#line 99 "LAB01.l"
 { printf("MAX "); }  return MAX;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 100 "LAB0.l"
+#line 100 "LAB01.l"
 { printf("MIN "); }  return MIN;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 101 "LAB0.l"
+#line 101 "LAB01.l"
 { printf("AVG "); }  return AVG ;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 102 "LAB0.l"
+#line 102 "LAB01.l"
 { printf("COUNT "); }  return COUNT;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 103 "LAB0.l"
+#line 103 "LAB01.l"
 { printf("INTO "); } return INTO;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 104 "LAB0.l"
+#line 104 "LAB01.l"
 { printf("VALUES "); } return VALUES;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 105 "LAB0.l"
+#line 105 "LAB01.l"
 { printf("FROM "); } return FROM;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 106 "LAB0.l"
+#line 106 "LAB01.l"
 { printf("SET "); }   return SET;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 107 "LAB0.l"
+#line 107 "LAB01.l"
 { printf("ASC "); }   return ASC ; 
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 108 "LAB0.l"
+#line 108 "LAB01.l"
 { printf("DESC "); } return DESC;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 109 "LAB0.l"
+#line 109 "LAB01.l"
 { printf("VARCHAR "); }   return VARCHAR;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 110 "LAB0.l"
+#line 110 "LAB01.l"
 { printf("DECIMAL"); }    return DECIMAL;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 111 "LAB0.l"
+#line 111 "LAB01.l"
 { printf("INTEGER "); }   return INTERGER;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 112 "LAB0.l"
+#line 112 "LAB01.l"
 { printf("AND "); }   return AND;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 113 "LAB0.l"
+#line 113 "LAB01.l"
 { printf("OR "); } return OR;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 116 "LAB0.l"
+#line 116 "LAB01.l"
 {int index = idExist(yytext);
                         if(index == -1){
                             index = id_counter;
@@ -1181,111 +1181,111 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 135 "LAB0.l"
+#line 135 "LAB01.l"
 { printf(" entero=%s ", yytext); }; return ENTERO;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 136 "LAB0.l"
+#line 136 "LAB01.l"
 { printf(" decimal=%s ", yytext); }; return DECIMAL;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 137 "LAB0.l"
+#line 137 "LAB01.l"
 { printf(" cadena=%s ", yytext); }; return CADENA;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 139 "LAB0.l"
+#line 139 "LAB01.l"
 { printf(" suma=%s ", yytext); }; return SUM
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 140 "LAB0.l"
+#line 140 "LAB01.l"
 { printf(" resta=%s ", yytext); }; return RESTA;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 141 "LAB0.l"
-{ printf(" asterisco=%s ", yytext); }
+#line 141 "LAB01.l"
+{ printf(" multiplicacion=%s ", yytext); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 142 "LAB0.l"
+#line 142 "LAB01.l"
 { printf(" div=%s ", yytext); };  return DIV;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 143 "LAB0.l"
+#line 143 "LAB01.l"
 { printf(" igual=%s ", yytext); };    return IGUAL;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 144 "LAB0.l"
+#line 144 "LAB01.l"
 { printf(" diferencia=%s ", yytext); };  return DIFERENCIA;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 145 "LAB0.l"
+#line 145 "LAB01.l"
 { printf(" mayor%s ", yytext); }; return MAYORQUE;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 146 "LAB0.l"
+#line 146 "LAB01.l"
 { printf(" menor=%s ", yytext); }; return MENORQUE;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 147 "LAB0.l"
+#line 147 "LAB01.l"
 { printf(" mayorIgual=%s ", yytext); }; return MAYORIGUAL;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 148 "LAB0.l"
+#line 148 "LAB01.l"
 { printf(" menorIgual=%s ", yytext); }; return  MENORIGUAL;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 150 "LAB0.l"
+#line 150 "LAB01.l"
 { printf(" parabre=%s ", yytext); };  return PARABRE;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 151 "LAB0.l"
+#line 151 "LAB01.l"
 { printf(" paracierr=%s ", yytext); }; return PARCIERRA;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 152 "LAB0.l"
+#line 152 "LAB01.l"
 { printf(" coma=%s ", yytext); } return COMA;    
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 153 "LAB0.l"
+#line 153 "LAB01.l"
 { printf(" puntcoma=%s", yytext); };  return PUNTO_COMA;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 154 "LAB0.l"
+#line 154 "LAB01.l"
 { printf(" asig= %s ", yytext); };    return ASIGN;
 	YY_BREAK
 case 44:
 /* rule 44 can match eol */
 YY_RULE_SETUP
-#line 155 "LAB0.l"
+#line 155 "LAB01.l"
 {printf("asterisco=%s ",yytext);}; return ASTERISCO;
 	YY_BREAK
 case 45:
 /* rule 45 can match eol */
 YY_RULE_SETUP
-#line 159 "LAB0.l"
+#line 159 "LAB01.l"
 { printf("ERROR=%s ",yytext);
    errors_count++;
 }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 164 "LAB0.l"
+#line 164 "LAB01.l"
 ECHO;
 	YY_BREAK
 #line 1292 "lex.yy.c"
@@ -2305,44 +2305,44 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 164 "LAB0.l"
+#line 164 "LAB01.l"
 
 //"*"                { printf("asterisco=%s", yytext); }
 //colocar que puedan reconocer los comandos SQL tanto mayusculas como
 //también hay que reconocer al caracter especial asterisco que podría estarprecedido por el select
  // también veo saber distinguir cuales son los que se repiten y cuales no
 
-//int yywrap(){return 1;}
+int yywrap(void){return 1;}
 
-int main(int argc, char *argv[]){
-    //++argv, --argc;
-    /*Abro el archivo en modo lectura y dejo apuntando el puntero yyvin que nos pide el FLEX alli*/
-    if ((yyin = fopen(argv[1], "rt")) == NULL){
-        printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
-        return 1;
-    }else{
-        //printf("\nEl archivo %s se abrio correctamente\n",argv[1]);
-        //yyin = stdin;
+// int main(int argc, char *argv[]){
+//     //++argv, --argc;
+//     /*Abro el archivo en modo lectura y dejo apuntando el puntero yyvin que nos pide el FLEX alli*/
+//     if ((yyin = fopen(argv[1], "rt")) == NULL){
+//         printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
+//         return 1;
+//     }else{
+//         //printf("\nEl archivo %s se abrio correctamente\n",argv[1]);
+//         //yyin = stdin;
 
-    yylex();
-    printf("\n\n");
-         printf("%d Identificadores encontrados:", id_counter);
-         printf("\n\n");
+//     yylex();
+//     printf("\n\n");
+//          printf("%d Identificadores encontrados:", id_counter);
+//          printf("\n\n");
 
-    for (int i = 0; i < id_counter ; i++) {
-        printf("id%d=%s\n", i + 1, ids[i]);
-    }
+//     for (int i = 0; i < id_counter ; i++) {
+//         printf("id%d=%s\n", i + 1, ids[i]);
+//     }
 
-        //Aquí es en donde se muestra los errores léxicos encontrados y cuántos de ellos se encontraron
-    printf("\nErrores léxicos encontrados:\n");
+//         //Aquí es en donde se muestra los errores léxicos encontrados y cuántos de ellos se encontraron
+//     printf("\nErrores léxicos encontrados:\n");
     
-    printf("\n\n");
-    printf("%d Errores léxicos: ", errors_count);
+//     printf("\n\n");
+//     printf("%d Errores léxicos: ", errors_count);
 
-    return 0;
+//     return 0;
 
-    }
-    printf("\nFLEX Finalizo la lectura del archivo %s \n", argv[1]);
-    fclose(yyin);
-    return 0;
-}
+//     }
+//     printf("\nFLEX Finalizo la lectura del archivo %s \n", argv[1]);
+//     fclose(yyin);
+//     return 0;
+// }

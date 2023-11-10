@@ -138,7 +138,7 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
 
 "+"                { printf(" suma=%s ", yytext); }; return SUM
 "-"                { printf(" resta=%s ", yytext); }; return RESTA;
-"*"                { printf(" asterisco=%s ", yytext); }
+"*"                { printf(" multiplicacion=%s ", yytext); }
 "/"                { printf(" div=%s ", yytext); };  return DIV;
 "=="               { printf(" igual=%s ", yytext); };    return IGUAL;
 "<>"               { printf(" diferencia=%s ", yytext); };  return DIFERENCIA;
@@ -167,37 +167,37 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
 //también hay que reconocer al caracter especial asterisco que podría estarprecedido por el select
  // también veo saber distinguir cuales son los que se repiten y cuales no
 
-//int yywrap(){return 1;}
+int yywrap(void){return 1;}
 
-int main(int argc, char *argv[]){
-    //++argv, --argc;
-    /*Abro el archivo en modo lectura y dejo apuntando el puntero yyvin que nos pide el FLEX alli*/
-    if ((yyin = fopen(argv[1], "rt")) == NULL){
-        printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
-        return 1;
-    }else{
-        //printf("\nEl archivo %s se abrio correctamente\n",argv[1]);
-        //yyin = stdin;
+// int main(int argc, char *argv[]){
+//     //++argv, --argc;
+//     /*Abro el archivo en modo lectura y dejo apuntando el puntero yyvin que nos pide el FLEX alli*/
+//     if ((yyin = fopen(argv[1], "rt")) == NULL){
+//         printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
+//         return 1;
+//     }else{
+//         //printf("\nEl archivo %s se abrio correctamente\n",argv[1]);
+//         //yyin = stdin;
 
-    yylex();
-    printf("\n\n");
-         printf("%d Identificadores encontrados:", id_counter);
-         printf("\n\n");
+//     yylex();
+//     printf("\n\n");
+//          printf("%d Identificadores encontrados:", id_counter);
+//          printf("\n\n");
 
-    for (int i = 0; i < id_counter ; i++) {
-        printf("id%d=%s\n", i + 1, ids[i]);
-    }
+//     for (int i = 0; i < id_counter ; i++) {
+//         printf("id%d=%s\n", i + 1, ids[i]);
+//     }
 
-        //Aquí es en donde se muestra los errores léxicos encontrados y cuántos de ellos se encontraron
-    printf("\nErrores léxicos encontrados:\n");
+//         //Aquí es en donde se muestra los errores léxicos encontrados y cuántos de ellos se encontraron
+//     printf("\nErrores léxicos encontrados:\n");
     
-    printf("\n\n");
-    printf("%d Errores léxicos: ", errors_count);
+//     printf("\n\n");
+//     printf("%d Errores léxicos: ", errors_count);
 
-    return 0;
+//     return 0;
 
-    }
-    printf("\nFLEX Finalizo la lectura del archivo %s \n", argv[1]);
-    fclose(yyin);
-    return 0;
-}
+//     }
+//     printf("\nFLEX Finalizo la lectura del archivo %s \n", argv[1]);
+//     fclose(yyin);
+//     return 0;
+// }
