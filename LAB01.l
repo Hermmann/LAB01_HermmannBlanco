@@ -133,12 +133,12 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
                                
 
 {ENTERO}             { printf(" entero=%s ", yytext); }; return ENTERO;
-{DECIMAL}     { printf(" decimal=%s ", yytext); }; return DECIMAL;
+{DECIMAL}        { printf(" decimal=%s ", yytext); }; return FLOAT;
 {CADENA}         { printf(" cadena=%s ", yytext); }; return CADENA;
 
 "+"                { printf(" suma=%s ", yytext); }; return SUM
 "-"                { printf(" resta=%s ", yytext); }; return RESTA;
-"*"                { printf(" multiplicacion=%s ", yytext); }
+"*"                { printf(" multiplicacion=%s ", yytext);}; return MULT;
 "/"                { printf(" div=%s ", yytext); };  return DIV;
 "=="               { printf(" igual=%s ", yytext); };    return IGUAL;
 "<>"               { printf(" diferencia=%s ", yytext); };  return DIFERENCIA;
