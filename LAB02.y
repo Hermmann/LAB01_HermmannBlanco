@@ -1,14 +1,11 @@
 %{
-    #include <stdio.h>
-    #include <string.h>
-
-
+#include <stdio.h>
+#include <string.h>
 %}
-
 
 /* TOKENS comandos SQL*/
 %token CREATETABLE DROPTABLE SELECT WHERE GROUPBY INSERT DELETE UPDATE MAX MIN 
-%token AVG COUNT VALUES FROM SET ASC DESC VARCHAR DECIMAL INTERGER AND OR
+%token AVG COUNT VALUES FROM SET ASC DESC VARCHAR DECIMAL INTEGER AND OR
 
 /* SEPARADORES Y ASTERISCO*/
 %token PARABRE PARCIERRA COMA PUNTO_COMA ASIGN ASTERISCO
@@ -19,12 +16,59 @@
 /*OPERADORES MATEMATICOS*/
 %token SUM RESTA MULT DIV IGUAL DIFERENCIA MAYORQUE MENORQUE MAYORIGUAL MENORIGUAL
 
-/*  SEPARADORES     */
-%token PARABRE PARCIERRA COMA PUNTO_COMA ASIGN 
+/* SEPARADORES */
+%token PARABRE PARCIERRA COMA PUNTO_COMA ASIGN
 
 %start inicio
 
-//pensar como hacer las líneas de código SQL en terminos de una GIC
+%%
+
+inicio: /* Define la regla inicial de tu gramática */
+        | sentencia
+        | inicio sentencia /* Para manejar múltiples sentencias */
+        ;
+
+sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
+         | DROPTABLE IDENTIFICADOR PUNTO_COMA
+         | SELECT lista_campos FROM IDENTIFICADOR PUNTO_COMA
+         | INSERT INTO IDENTIFICADOR PARABRE lista_campos PARCIERRA VALUES PARABRE lista_valores PARCIERRA PUNTO_COMA
+         | DELETE FROM IDENTIFICADOR WHERE condicion PUNTO_COMA
+         | UPDATE IDENTIFICADOR SET lista_asignaciones WHERE condicion PUNTO_COMA
+         ;
+
+lista_columnas: IDENTIFICADOR IDENTIFICADOR PARABRE ENTERO PARCIERRA
+              | lista_columnas COMA IDENTIFICADOR IDENTIFICADOR PARABRE ENTERO PARCIERRA
+              ;
+
+lista_campos: ASTERISCO
+            | IDENTIFICADOR
+            | lista_campos COMA IDENTIFICADOR
+            ;
+
+lista_valores: valor
+             | lista_valores COMA valor
+             ;
+
+valor: IDENTIFICADOR
+     | ENTERO
+     | FLOAT
+     | CADENA
+     ;
+
+lista_asignaciones: IDENTIFICADOR ASIGN valor
+                 | lista_asignaciones COMA IDENTIFICADOR ASIGN valor
+                 ;
+
+condicion: IDENTIFICADOR IGUAL valor
+         | IDENTIFICADOR DIFERENCIA valor
+         | IDENTIFICADOR MAYORQUE valor
+         | IDENTIFICADOR MENORQUE valor
+         | IDENTIFICADOR MAYORIGUAL valor
+         | IDENTIFICADOR MENORIGUAL valor
+         | condicion AND condicion
+         | condicion OR condicion
+         | PARABRE condicion PARCIERRA
+         ;
 
 %%
 
