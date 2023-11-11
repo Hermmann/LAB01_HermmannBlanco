@@ -29,3 +29,140 @@
 %%
 
 %%
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void yyerror(const char* s);
+extern int yylex();
+extern FILE* yyin;
+%}
+
+%union {
+    char* strval;
+    int intval;
+    float floatval;
+}
+
+%token CREATE_DROP INSERT DELETE UPDATE SELECT FROM WHERE GROUP BY ORDER ASC_DESC INTO VALUES SET AND OR FUNC
+%token IDENTIFIER INTEGER DECIMAL STRING
+%token OPEN_PAREN CLOSE_PAREN COMMA SEMICOLON EQUAL NOT_EQUAL GREATER_EQUAL LESS_EQUAL GREATER LESS
+
+%type <strval> IDENTIFIER STRING
+%type <intval> INTEGER
+%type <floatval> DECIMAL
+
+%%
+
+sql_stmt: create_drop_stmt
+        | insert_stmt
+        | delete_stmt
+        | update_stmt
+        | select_stmt
+
+create_drop_stmt: CREATE DROP TABLE IDENTIFIER '(' col_def_list ')' SEMICOLON
+                | CREATE TABLE IDENTIFIER '(' col_def_list ')' SEMICOLON
+                ;
+
+col_def_list: IDENTIFIER col_def
+            | col_def_list ',' IDENTIFIER col_def
+            ;
+
+col_def: IDENTIFIER IDENTIFIER '(' INTEGER ')' 
+       | IDENTIFIER IDENTIFIER '(' INTEGER ')' ',' col_def
+       ;
+
+insert_stmt: INSERT INTO IDENTIFIER VALUES '(' val_list ')' SEMICOLON
+           ;
+
+val_list: val
+        | val_list ',' val
+        ;
+
+val: INTEGER
+   | DECIMAL
+   | STRING
+   ;
+
+delete_stmt: DELETE FROM IDENTIFIER WHERE cond_list SEMICOLON
+           ;
+
+cond_list: condition
+         | cond_list AND condition
+         | cond_list OR condition
+         ;
+
+condition: IDENTIFIER EQUAL val
+         | IDENTIFIER NOT_EQUAL val
+         | IDENTIFIER GREATER_EQUAL val
+         | IDENTIFIER LESS_EQUAL val
+         | IDENTIFIER GREATER val
+         | IDENTIFIER LESS val
+         ;
+
+update_stmt: UPDATE IDENTIFIER SET update_list WHERE cond_list SEMICOLON
+           ;
+
+update_list: IDENTIFIER EQUAL val
+           | IDENTIFIER EQUAL val ',' update_list
+           ;
+
+select_stmt: SELECT select_list FROM IDENTIFIER opt_where opt_group_by opt_order_by SEMICOLON
+           ;
+
+opt_where: WHERE cond_list
+         | /* empty */
+         ;
+
+opt_group_by: GROUP BY IDENTIFIER SEMICOLON
+            | /* empty */
+            ;
+
+opt_order_by: ORDER BY order_list ASC_DESC SEMICOLON
+            | /* empty */
+            ;
+
+order_list: IDENTIFIER
+          | order_list ',' IDENTIFIER
+          ;
+
+select_list: '*'
+           | select_item_list
+           ;
+
+select_item_list: select_item
+                | select_item_list ',' select_item
+                ;
+
+select_item: FUNC '(' IDENTIFIER ')' 
+           | IDENTIFIER
+           ;
+
+%%
+
+void yyerror(const char* s) {
+    fprintf(stderr, "Error sintáctico: %s\n", s);
+}
+
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Uso: %s <archivo de entrada>\n", argv[0]);
+        return 1;
+    }
+
+    FILE* file = fopen(argv[1], "r");
+    if (!file) {
+        perror("Error al abrir el archivo");
+        return 1;
+    }
+
+    yyin = file;
+
+    yyparse();
+
+    fclose(file);
+
+    return 0;
+}
