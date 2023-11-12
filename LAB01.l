@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+
 #define MAX_IDENFIERS  100
 #define MAX_ERRORS  100
 int id_counter = 0;
