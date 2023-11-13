@@ -72,9 +72,11 @@
 #include <stdio.h>
 #include <string.h>
 int yylex();
+void yyerror(const char *s);
 
 
-#line 78 "y.tab.c"
+
+#line 80 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -97,10 +99,7 @@ int yylex();
 #  endif
 # endif
 
-/* Use api.header.include to #include this header
-   instead of duplicating it here.  */
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -231,7 +230,7 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -683,10 +682,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    28,    29,    32,    33,    34,    35,    36,
-      37,    40,    41,    44,    45,    46,    49,    50,    53,    54,
-      55,    56,    59,    60,    63,    64,    65,    66,    67,    68,
-      69,    70,    71
+       0,    29,    29,    30,    31,    34,    35,    36,    37,    38,
+      39,    42,    43,    46,    47,    48,    51,    52,    55,    56,
+      57,    58,    61,    62,    65,    66,    67,    68,    69,    70,
+      71,    72,    73
 };
 #endif
 
@@ -1302,7 +1301,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1306 "y.tab.c"
+#line 1305 "y.tab.c"
 
       default: break;
     }
@@ -1495,13 +1494,27 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 74 "LAB02.y"
+#line 76 "LAB02.y"
 
 
-int main(void ){
-    return 0;
+int main(int argc, char** argv ){
+    FILE *input = fopen(argv[1], "r");
+    char * line = NULL;
+    size_t len= 0;
+
+    //GUIATE DEL LABORATORIO DEL SEMESTRE PASADO
+}
+void yyerror(const char *s) {
+    fprintf(stderr, "%s\n", s);
 }
 
+// void yyerror(const char *s) {
+//     fprintf(stderr, "%s\n", s);
+// }
+
+// void yyerror(const char* s) {
+//     fprintf(stderr, "Error sintáctico: %s\n", s);
+// }
 // int main(int argc, char* argv[]) {
 //     if (argc != 2) {
 //         fprintf(stderr, "Uso: %s <archivo de entrada>\n", argv[0]);
@@ -1523,9 +1536,7 @@ int main(void ){
 //     return 0;
 // }
 
-// void yyerror(const char* s) {
-//     fprintf(stderr, "Error sintáctico: %s\n", s);
-// }
+
 
 
 // %%

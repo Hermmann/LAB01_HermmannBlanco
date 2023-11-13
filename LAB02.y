@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 int yylex();
+void yyerror(const char *s);
+
 
 %}
 
@@ -80,6 +82,17 @@ int main(int argc, char** argv ){
 
     //GUIATE DEL LABORATORIO DEL SEMESTRE PASADO
 }
+void yyerror(const char *s) {
+    fprintf(stderr, "%s\n", s);
+}
+
+// void yyerror(const char *s) {
+//     fprintf(stderr, "%s\n", s);
+// }
+
+// void yyerror(const char* s) {
+//     fprintf(stderr, "Error sintáctico: %s\n", s);
+// }
 // int main(int argc, char* argv[]) {
 //     if (argc != 2) {
 //         fprintf(stderr, "Uso: %s <archivo de entrada>\n", argv[0]);
@@ -101,9 +114,7 @@ int main(int argc, char** argv ){
 //     return 0;
 // }
 
-// void yyerror(const char* s) {
-//     fprintf(stderr, "Error sintáctico: %s\n", s);
-// }
+
 
 
 // %%
