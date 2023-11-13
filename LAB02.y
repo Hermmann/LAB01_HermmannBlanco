@@ -3,6 +3,12 @@
 #include <string.h>
 int yylex();
 void yyerror(const char *s);
+typedef struct yy_buffer_state * YY_BUFFER_STATE;
+extern FILE *yyout;
+// extern int lexerError, lexerWrite, numCount;
+extern YY_BUFFER_STATE yy_scan_string(char * str);
+// extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
+int errorCounter = 0;
 
 
 %}
@@ -78,9 +84,34 @@ condicion: IDENTIFICADOR IGUAL valor
 int main(int argc, char** argv ){
     FILE *input = fopen(argv[1], "r");
     char * line = NULL;
-    size_t len= 0;
-
+    //size_t len= 0;
+    //ssize_t read;
     //GUIATE DEL LABORATORIO DEL SEMESTRE PASADO
+
+    while((read = getline(&line, &len, input)) !=-1) {
+        line[strcspn(line, "\n")]=0;
+
+        printf("%\nComponentes Léxicos:\n", line);
+        //numCount =1;
+        YY_BUFFER_STATE buffer = yy_scan_string(line);
+        if(check_lexical_error()){
+            //lexerError = 0;
+            printf("Análisis Sintáctico:\nNo se ejecuta\n\n");
+        }else{
+            //lexerError = 0;
+            //errorCounter = 0;
+            //yy_delete_buffer(buffer);
+            YY_BUFFER_STATE buffer = yy_scan_string(line);
+            yyparse();
+            // if(errorCounter == 0){
+            //     printf("Análisis Sintáctico:\nCorrecto!\n\n");
+            // }else{
+            //     printf("Análisis Sintáctico:\nErrores Sintácticos: %d\n\n", errorCounter);
+            // };
+          //  yy_delete_buffer(buffer);
+        };
+    };
+    return 0;
 }
 void yyerror(const char *s) {
     fprintf(stderr, "%s\n", s);

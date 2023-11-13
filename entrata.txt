@@ -1,0 +1,2 @@
+CREATE Table Empleado(nombre VARCHAR(20), cedula INTEGER, salario
+DECIMAL(2));

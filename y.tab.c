@@ -73,10 +73,16 @@
 #include <string.h>
 int yylex();
 void yyerror(const char *s);
+typedef struct yy_buffer_state * YY_BUFFER_STATE;
+extern FILE *yyout;
+// extern int lexerError, lexerWrite, numCount;
+extern YY_BUFFER_STATE yy_scan_string(char * str);
+// extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
+int errorCounter = 0;
 
 
 
-#line 80 "y.tab.c"
+#line 86 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -682,10 +688,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    29,    29,    30,    31,    34,    35,    36,    37,    38,
-      39,    42,    43,    46,    47,    48,    51,    52,    55,    56,
-      57,    58,    61,    62,    65,    66,    67,    68,    69,    70,
-      71,    72,    73
+       0,    35,    35,    36,    37,    40,    41,    42,    43,    44,
+      45,    48,    49,    52,    53,    54,    57,    58,    61,    62,
+      63,    64,    67,    68,    71,    72,    73,    74,    75,    76,
+      77,    78,    79
 };
 #endif
 
@@ -1301,7 +1307,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1305 "y.tab.c"
+#line 1311 "y.tab.c"
 
       default: break;
     }
@@ -1494,15 +1500,40 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 76 "LAB02.y"
+#line 82 "LAB02.y"
 
 
 int main(int argc, char** argv ){
     FILE *input = fopen(argv[1], "r");
     char * line = NULL;
-    size_t len= 0;
-
+    //size_t len= 0;
+    //ssize_t read;
     //GUIATE DEL LABORATORIO DEL SEMESTRE PASADO
+
+    while((read = getline(&line, &len, input)) !=-1) {
+        line[strcspn(line, "\n")]=0;
+
+        printf("%\nComponentes Léxicos:\n", line);
+        //numCount =1;
+        YY_BUFFER_STATE buffer = yy_scan_string(line);
+        if(check_lexical_error()){
+            //lexerError = 0;
+            printf("Análisis Sintáctico:\nNo se ejecuta\n\n");
+        }else{
+            //lexerError = 0;
+            //errorCounter = 0;
+            //yy_delete_buffer(buffer);
+            YY_BUFFER_STATE buffer = yy_scan_string(line);
+            yyparse();
+            // if(errorCounter == 0){
+            //     printf("Análisis Sintáctico:\nCorrecto!\n\n");
+            // }else{
+            //     printf("Análisis Sintáctico:\nErrores Sintácticos: %d\n\n", errorCounter);
+            // };
+          //  yy_delete_buffer(buffer);
+        };
+    };
+    return 0;
 }
 void yyerror(const char *s) {
     fprintf(stderr, "%s\n", s);
