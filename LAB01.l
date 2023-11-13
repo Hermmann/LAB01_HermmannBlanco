@@ -1,12 +1,16 @@
 %{
+#define YYSTYPE char const *    
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "y.tab.h"
 
 
 #define MAX_IDENFIERS  100
 #define MAX_ERRORS  100
+
+
 int id_counter = 0;
 char ids[MAX_IDENFIERS][256];
 int ids_numebers  [MAX_IDENFIERS];
@@ -32,8 +36,8 @@ int idExist(char* identifier) {
 
 
 %}
-%option noyywrap
-%option yylineno
+/*%option noyywrap
+%option yylineno     
 
 
 /*SECCION DE TOKENS */
@@ -87,7 +91,6 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
 
 %%
 
-
 {CREATETABLE}   { printf("CREATE TABLE ");} ; return CREATETABLE;
 {DROPTABLE}    { printf("DROP TABLE "); }   ; return DROPTABLE;
 {SELECT} { printf("SELECT "); } ; return SELECT;
@@ -137,7 +140,7 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
 {DECIMAL}        { printf(" decimal=%s ", yytext); }; return FLOAT;
 {CADENA}         { printf(" cadena=%s ", yytext); }; return CADENA;
 
-"+"                { printf(" suma=%s ", yytext); }; return SUM
+"+"                { printf(" suma=%s ", yytext); }; return SUM;
 "-"                { printf(" resta=%s ", yytext); }; return RESTA;
 "*"                { printf(" multiplicacion=%s ", yytext);}; return MULT;
 "/"                { printf(" div=%s ", yytext); };  return DIV;
@@ -159,8 +162,7 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
 
 {ERROR}    { printf("ERROR=%s ",yytext);
    errors_count++;
-}
-
+};
 
 %%
 //"*"                { printf("asterisco=%s", yytext); }
@@ -168,8 +170,9 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
 //también hay que reconocer al caracter especial asterisco que podría estarprecedido por el select
  // también veo saber distinguir cuales son los que se repiten y cuales no
 
-int yywrap(void){return 1;}
-
+int yywrap(void) {
+    return 1;
+}
 // int main(int argc, char *argv[]){
 //     //++argv, --argc;
 //     /*Abro el archivo en modo lectura y dejo apuntando el puntero yyvin que nos pide el FLEX alli*/

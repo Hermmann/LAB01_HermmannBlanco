@@ -74,7 +74,7 @@
 int yylex();
 
 
-#line 78 "y.tab.c"
+#line 78 "LAB02.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -97,141 +97,7 @@ int yylex();
 #  endif
 # endif
 
-/* Use api.header.include to #include this header
-   instead of duplicating it here.  */
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    CREATETABLE = 258,             /* CREATETABLE  */
-    DROPTABLE = 259,               /* DROPTABLE  */
-    SELECT = 260,                  /* SELECT  */
-    WHERE = 261,                   /* WHERE  */
-    GROUPBY = 262,                 /* GROUPBY  */
-    ORDERBY = 263,                 /* ORDERBY  */
-    INSERT = 264,                  /* INSERT  */
-    INTO = 265,                    /* INTO  */
-    DELETE = 266,                  /* DELETE  */
-    UPDATE = 267,                  /* UPDATE  */
-    MAX = 268,                     /* MAX  */
-    MIN = 269,                     /* MIN  */
-    AVG = 270,                     /* AVG  */
-    COUNT = 271,                   /* COUNT  */
-    VALUES = 272,                  /* VALUES  */
-    FROM = 273,                    /* FROM  */
-    SET = 274,                     /* SET  */
-    ASC = 275,                     /* ASC  */
-    DESC = 276,                    /* DESC  */
-    VARCHAR = 277,                 /* VARCHAR  */
-    DECIMAL = 278,                 /* DECIMAL  */
-    INTERGER = 279,                /* INTERGER  */
-    AND = 280,                     /* AND  */
-    OR = 281,                      /* OR  */
-    PARABRE = 282,                 /* PARABRE  */
-    PARCIERRA = 283,               /* PARCIERRA  */
-    COMA = 284,                    /* COMA  */
-    PUNTO_COMA = 285,              /* PUNTO_COMA  */
-    ASIGN = 286,                   /* ASIGN  */
-    ASTERISCO = 287,               /* ASTERISCO  */
-    IDENTIFICADOR = 288,           /* IDENTIFICADOR  */
-    ENTERO = 289,                  /* ENTERO  */
-    FLOAT = 290,                   /* FLOAT  */
-    NUMERO = 291,                  /* NUMERO  */
-    CADENA = 292,                  /* CADENA  */
-    SUM = 293,                     /* SUM  */
-    RESTA = 294,                   /* RESTA  */
-    MULT = 295,                    /* MULT  */
-    DIV = 296,                     /* DIV  */
-    IGUAL = 297,                   /* IGUAL  */
-    DIFERENCIA = 298,              /* DIFERENCIA  */
-    MAYORQUE = 299,                /* MAYORQUE  */
-    MENORQUE = 300,                /* MENORQUE  */
-    MAYORIGUAL = 301,              /* MAYORIGUAL  */
-    MENORIGUAL = 302               /* MENORIGUAL  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
-#endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
-#define CREATETABLE 258
-#define DROPTABLE 259
-#define SELECT 260
-#define WHERE 261
-#define GROUPBY 262
-#define ORDERBY 263
-#define INSERT 264
-#define INTO 265
-#define DELETE 266
-#define UPDATE 267
-#define MAX 268
-#define MIN 269
-#define AVG 270
-#define COUNT 271
-#define VALUES 272
-#define FROM 273
-#define SET 274
-#define ASC 275
-#define DESC 276
-#define VARCHAR 277
-#define DECIMAL 278
-#define INTERGER 279
-#define AND 280
-#define OR 281
-#define PARABRE 282
-#define PARCIERRA 283
-#define COMA 284
-#define PUNTO_COMA 285
-#define ASIGN 286
-#define ASTERISCO 287
-#define IDENTIFICADOR 288
-#define ENTERO 289
-#define FLOAT 290
-#define NUMERO 291
-#define CADENA 292
-#define SUM 293
-#define RESTA 294
-#define MULT 295
-#define DIV 296
-#define IGUAL 297
-#define DIFERENCIA 298
-#define MAYORQUE 299
-#define MENORQUE 300
-#define MAYORIGUAL 301
-#define MENORIGUAL 302
-
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
-#endif
-
-
-extern YYSTYPE yylval;
-
-
-int yyparse (void);
-
-
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#include "LAB02.tab.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -1302,7 +1168,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1306 "y.tab.c"
+#line 1172 "LAB02.tab.c"
 
       default: break;
     }
@@ -1498,30 +1364,30 @@ yyreturnlab:
 #line 74 "LAB02.y"
 
 
-int main(void ){
-    return 0;
-}
-
-// int main(int argc, char* argv[]) {
-//     if (argc != 2) {
-//         fprintf(stderr, "Uso: %s <archivo de entrada>\n", argv[0]);
-//         return 1;
-//     }
-
-//     FILE* file = fopen(argv[1], "r");
-//     if (!file) {
-//         perror("Error al abrir el archivo");
-//         return 1;
-//     }
-
-//     yyin = file;
-
-//     yyparse();
-
-//     fclose(file);
-
+// int main(void ){
 //     return 0;
 // }
+
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Uso: %s <archivo de entrada>\n", argv[0]);
+        return 1;
+    }
+
+    FILE* file = fopen(argv[1], "r");
+    if (!file) {
+        perror("Error al abrir el archivo");
+        return 1;
+    }
+
+    yyin = file;
+
+    yyparse();
+
+    fclose(file);
+
+    return 0;
+}
 
 // void yyerror(const char* s) {
 //     fprintf(stderr, "Error sintáctico: %s\n", s);

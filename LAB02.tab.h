@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_LAB02_TAB_H_INCLUDED
+# define YY_YY_LAB02_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -102,56 +102,6 @@ extern int yydebug;
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
-#define CREATETABLE 258
-#define DROPTABLE 259
-#define SELECT 260
-#define WHERE 261
-#define GROUPBY 262
-#define ORDERBY 263
-#define INSERT 264
-#define INTO 265
-#define DELETE 266
-#define UPDATE 267
-#define MAX 268
-#define MIN 269
-#define AVG 270
-#define COUNT 271
-#define VALUES 272
-#define FROM 273
-#define SET 274
-#define ASC 275
-#define DESC 276
-#define VARCHAR 277
-#define DECIMAL 278
-#define INTERGER 279
-#define AND 280
-#define OR 281
-#define PARABRE 282
-#define PARCIERRA 283
-#define COMA 284
-#define PUNTO_COMA 285
-#define ASIGN 286
-#define ASTERISCO 287
-#define IDENTIFICADOR 288
-#define ENTERO 289
-#define FLOAT 290
-#define NUMERO 291
-#define CADENA 292
-#define SUM 293
-#define RESTA 294
-#define MULT 295
-#define DIV 296
-#define IGUAL 297
-#define DIFERENCIA 298
-#define MAYORQUE 299
-#define MENORQUE 300
-#define MAYORIGUAL 301
-#define MENORIGUAL 302
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -167,4 +117,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_LAB02_TAB_H_INCLUDED  */
