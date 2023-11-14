@@ -9,7 +9,7 @@ int yylex();
 int numCount = 1;
 bool errorFlag = false;
 int lexerError = 0;
-int lexerWrite0 1;
+int lexerWrite=0;
 
 #define MAX_IDENFIERS  100
 #define MAX_ERRORS  100

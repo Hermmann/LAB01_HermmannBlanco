@@ -47,6 +47,7 @@ sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
 
 lista_columnas: IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
               | lista_columnas COMA IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
+              | lista_columnas COMA IDENTIFICADOR tipo_dato
               ;
 
 
