@@ -1,0 +1,20 @@
+CREATE Table Empleado(nombre VARCHAR(20), cedula INTEGER, salario DECIMAL(2));
+Componentes Léxicos:
+CREATE TABLE  id1=Empleado  parabre=( id2=nombre  VARCHAR  parabre=(  entero=20  paracierr=)  coma=, Análisis Sintáctico:
+Errores Sintácticos: 1
+
+INSERT INTO Empleado VALUES('Juan',1045268154, 12aab);
+Componentes Léxicos:
+INSERT  INTO  id1=Empleado  VALUES Análisis Sintáctico:
+Errores Sintácticos: 2
+
+SELECT FROM a;
+Componentes Léxicos:
+SELECT  FROM Análisis Sintáctico:
+Errores Sintácticos: 3
+
+DROP TABLE Empleado;
+Componentes Léxicos:
+DROP TABLE  id1=Empleado  puntcoma=;Análisis Sintáctico:
+Errores Sintácticos: 3
+

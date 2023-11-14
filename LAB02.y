@@ -1,13 +1,13 @@
 %{
 #include <stdio.h>
 #include <string.h>
-int yylex();
+int yylex(), check_lexical_error();
 void yyerror(const char *s);
 typedef struct yy_buffer_state * YY_BUFFER_STATE;
 extern FILE *yyout;
 // extern int lexerError, lexerWrite, numCount;
 extern YY_BUFFER_STATE yy_scan_string(char * str);
-// extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
+extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 int errorCounter = 0;
 
 
@@ -45,9 +45,14 @@ sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
          | UPDATE IDENTIFICADOR SET lista_asignaciones WHERE condicion PUNTO_COMA
          ;
 
-lista_columnas: IDENTIFICADOR IDENTIFICADOR PARABRE ENTERO PARCIERRA
-              | lista_columnas COMA IDENTIFICADOR IDENTIFICADOR PARABRE ENTERO PARCIERRA
+lista_columnas: IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
+              | lista_columnas COMA IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
               ;
+
+
+
+tipo_dato: VARCHAR | DECIMAL | INTERGER
+;
 
 lista_campos: ASTERISCO
             | IDENTIFICADOR
@@ -81,41 +86,65 @@ condicion: IDENTIFICADOR IGUAL valor
 
 %%
 
-int main(int argc, char** argv ){
+int main(int argc, char **argv ){
     FILE *input = fopen(argv[1], "r");
     char * line = NULL;
-    //size_t len= 0;
-    //ssize_t read;
+    size_t len= 0;
+    ssize_t read;
     //GUIATE DEL LABORATORIO DEL SEMESTRE PASADO
 
     while((read = getline(&line, &len, input)) !=-1) {
         line[strcspn(line, "\n")]=0;
 
-        printf("%\nComponentes Léxicos:\n", line);
+        printf("%s\nComponentes Léxicos:\n", line);
         //numCount =1;
         YY_BUFFER_STATE buffer = yy_scan_string(line);
-        if(check_lexical_error()){
-            //lexerError = 0;
-            printf("Análisis Sintáctico:\nNo se ejecuta\n\n");
-        }else{
-            //lexerError = 0;
-            //errorCounter = 0;
-            //yy_delete_buffer(buffer);
-            YY_BUFFER_STATE buffer = yy_scan_string(line);
-            yyparse();
-            // if(errorCounter == 0){
-            //     printf("Análisis Sintáctico:\nCorrecto!\n\n");
-            // }else{
-            //     printf("Análisis Sintáctico:\nErrores Sintácticos: %d\n\n", errorCounter);
-            // };
-          //  yy_delete_buffer(buffer);
-        };
+        yyparse();
+         printf("Análisis Sintáctico:\nErrores Sintácticos: %d\n\n", errorCounter);
+        // if(check_lexical_error()){
+        //     //lexerError = 0;
+        //     printf("Análisis Sintáctico:\nNo se ejecuta\n\n");
+        // }else{
+        //     //lexerError = 0;
+        //     //errorCounter = 0;
+        //     //yy_delete_buffer(buffer);
+        //     YY_BUFFER_STATE buffer = yy_scan_string(line);
+        //     yyparse();
+        //     if(errorCounter == 0){
+        //         printf("Análisis Sintáctico:\nCorrecto!\n\n");
+        //     }else{
+        //         printf("Análisis Sintáctico:\nErrores Sintácticos: %d\n\n", errorCounter);
+        //     };
+        //     yy_delete_buffer(buffer);
+        // };
+        //yy_delete_buffer(buffer);
     };
     return 0;
 }
+
+// void yyerror(const char *s) {
+//     printf("Error: %s\n", s);
+//     if (strstr(s, "lexical")) {
+//         lexicalErrorCounter++;
+//     } else if (strstr(s, "syntax")) {
+//         syntaxErrorCounter++;
+//     }
+// }
+
+
 void yyerror(const char *s) {
-    fprintf(stderr, "%s\n", s);
+    //fprintf(stderr, "%s\n", s);
+    ++errorCounter;
 }
+
+// int check_lexical_error(){
+//     lexerWrite = 1;
+//     int token = yylex();
+//     while(token){
+//         token = yylex();
+//     };
+//     return lexerError;
+// }
 
 // void yyerror(const char *s) {
 //     fprintf(stderr, "%s\n", s);
