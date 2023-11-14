@@ -40,6 +40,10 @@ inicio: /* Define la regla inicial de tu gramática */
 sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
          | DROPTABLE IDENTIFICADOR PUNTO_COMA
          | SELECT lista_campos FROM IDENTIFICADOR PUNTO_COMA
+         | SELECT funcide FROM IDENTIFICADOR PUNTO_COMA
+         | SELECT lista_campos FROM IDENTIFICADOR GROUPBY IDENTIFICADOR PUNTO_COMA
+         | SELECT lista_campos FROM IDENTIFICADOR ORDERBY identificadores orden PUNTO_COMA
+         | SELECT caso_where FROM IDENTIFICADOR WHERE condicion PUNTO_COMA
          | INSERT INTO IDENTIFICADOR PARABRE lista_campos PARCIERRA VALUES PARABRE lista_valores PARCIERRA PUNTO_COMA
          | DELETE FROM IDENTIFICADOR WHERE condicion PUNTO_COMA
          | UPDATE IDENTIFICADOR SET lista_asignaciones WHERE condicion PUNTO_COMA
@@ -51,7 +55,31 @@ lista_columnas: IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
               ;
 
 
+funcide:    funcion PARABRE IDENTIFICADOR PARCIERRA
+            | IDENTIFICADOR
+            | funcide COMA IDENTIFICADOR
+            | funcide COMA funcion PARABRE IDENTIFICADOR PARCIERRA
+;
 
+orden: ASC
+      | DESC
+;
+identificadores: IDENTIFICADOR
+                | identificadores COMA IDENTIFICADOR
+                | COMA IDENTIFICADOR
+
+;
+funcion: MAX
+        | MIN
+        | AVG
+        | COUNT
+
+;
+
+caso_where: ASTERISCO
+            | IDENTIFICADOR
+            | caso_where COMA IDENTIFICADOR
+;
 tipo_dato: VARCHAR | DECIMAL | INTERGER
 ;
 
@@ -82,7 +110,14 @@ condicion: IDENTIFICADOR IGUAL valor
          | IDENTIFICADOR MENORIGUAL valor
          | condicion AND condicion
          | condicion OR condicion
-         | PARABRE condicion PARCIERRA
+         | COMA IDENTIFICADOR IGUAL valor
+         | COMA IDENTIFICADOR DIFERENCIA valor
+         | COMA IDENTIFICADOR MAYORQUE valor
+         | COMA IDENTIFICADOR MENORQUE valor
+         | COMA IDENTIFICADOR MAYORIGUAL valor
+         | COMA IDENTIFICADOR MENORIGUAL valor
+         | COMA condicion AND condicion
+         | COMA condicion OR condicion
          ;
 
 %%

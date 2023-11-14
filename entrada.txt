@@ -1,4 +1,1 @@
-CREATE Table Empleado(nombre VARCHAR(20), cedula INTEGER, salario DECIMAL(2));
-INSERT INTO Empleado VALUES('Juan',1045268154, 12aab);
-SELECT FROM a;
-UPDATE SET nombre='Carlos' FROM Empleado WHERE cedula=12.5;
+SELECT nombre, MAX(salario) FROM Empleado;
