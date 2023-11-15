@@ -9,6 +9,7 @@ extern FILE *yyout;
 extern YY_BUFFER_STATE yy_scan_string(char * str);
 extern void yy_delete_buffer(YY_BUFFER_STATE buffer);
 int errorCounter = 0;
+int contadorlinea =1;
 
 
 %}
@@ -55,11 +56,11 @@ sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
 
          | SELECT lista_campos FROM IDENTIFICADOR WHERE condiciones GROUPBY IDENTIFICADOR ORDERBY identificadores orden PUNTO_COMA // 
 
-         | INSERT INTO IDENTIFICADOR PARABRE lista_campos PARCIERRA VALUES PARABRE lista_valores PARCIERRA PUNTO_COMA //
+         | INSERT INTO identificadores VALUES PARABRE identificadores PARCIERRA PUNTO_COMA //
 
-         | DELETE FROM IDENTIFICADOR WHERE condicion PUNTO_COMA
+         | DELETE FROM IDENTIFICADOR WHERE condiciones PUNTO_COMA
 
-         | UPDATE IDENTIFICADOR SET lista_asignaciones WHERE condicion PUNTO_COMA
+         | UPDATE IDENTIFICADOR SET lista_asignaciones WHERE condiciones PUNTO_COMA
          ;
 
 lista_columnas: IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
@@ -79,8 +80,8 @@ funcide:    funcion PARABRE IDENTIFICADOR PARCIERRA
             ;
     
 identificadores: IDENTIFICADOR
-                 | COMA IDENTIFICADOR
                  | identificadores COMA IDENTIFICADOR
+                 | COMA IDENTIFICADOR
 ;
 
 orden:  ASC
@@ -113,10 +114,6 @@ tipo_dato:   VARCHAR
             | INTERGER
 ;
 
-lista_valores: valor
-             | lista_valores COMA valor
-             ;
-
 valor: IDENTIFICADOR
      | ENTERO
      | FLOAT
@@ -143,11 +140,11 @@ int main(int argc, char **argv ){
     while((read = getline(&line, &len, input)) !=-1) {
         line[strcspn(line, "\n")]=0;
 
-        printf("%s\nComponentes Léxicos:\n", line);
+        
         //numCount =1;
         YY_BUFFER_STATE buffer = yy_scan_string(line);
         yyparse();
-         printf("Análisis Sintáctico:\nErrores Sintácticos: %d\n\n", errorCounter);
+         printf("Análisis Sintáctico: \nErrores Sintácticos: %d\n\n", errorCounter);
         // if(check_lexical_error()){
         //     //lexerError = 0;
         //     printf("Análisis Sintáctico:\nNo se ejecuta\n\n");
