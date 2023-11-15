@@ -88,12 +88,10 @@ orden:  ASC
         ;
 
 condiciones:  condicion
-             | condicion AND condicion
-             | condicion OR condicion
-             | COMA condicion AND condicion
-             | COMA condicion OR condicion
-             | AND condicion
-             | OR condicion
+             | condiciones COMA  AND condicion
+             | condiciones COMA  OR condicion
+             | COMA AND condicion
+             | COMA OR condicion
          ;
 
 condicion:  valor IGUAL valor

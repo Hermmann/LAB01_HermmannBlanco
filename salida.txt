@@ -3,8 +3,8 @@ Componentes Léxicos:
 SELECT  id1=nombre  coma=,  id2=salario  coma=,  id3=fecha  FROM  id4=empleados  WHERE  id2=salario   mayor>   entero=500  GROUP BY  id5=departamento  ORDER BY  id2=salario  DESC  puntcoma=;Análisis Sintáctico:
 Errores Sintácticos: 0
 
-SELECT * FROM empleados WHERE salario > 50000 ;
+SELECT * FROM empleados WHERE salario > 50000 , AND salario > 500, OR  salario > 500;
 Componentes Léxicos:
-SELECT asterisco= *  FROM  id4=empleados  WHERE  id2=salario   mayor>   entero=50000   puntcoma=;Análisis Sintáctico:
+SELECT asterisco= *  FROM  id4=empleados  WHERE  id2=salario   mayor>   entero=50000   coma=,  AND  id2=salario   mayor>   entero=500  coma=,  OR   id2=salario   mayor>   entero=500  puntcoma=;Análisis Sintáctico:
 Errores Sintácticos: 0
 
