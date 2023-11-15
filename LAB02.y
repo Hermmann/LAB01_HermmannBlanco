@@ -38,14 +38,27 @@ inicio: /* Define la regla inicial de tu gramática */
         ;
 
 sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
+
          | DROPTABLE IDENTIFICADOR PUNTO_COMA
-         | SELECT lista_campos FROM IDENTIFICADOR PUNTO_COMA
-         | SELECT funcide FROM IDENTIFICADOR PUNTO_COMA
-         | SELECT lista_campos FROM IDENTIFICADOR GROUPBY IDENTIFICADOR PUNTO_COMA
-         | SELECT lista_campos FROM IDENTIFICADOR ORDERBY identificadores orden PUNTO_COMA
-         | SELECT caso_where FROM IDENTIFICADOR WHERE condicion PUNTO_COMA
-         | INSERT INTO IDENTIFICADOR PARABRE lista_campos PARCIERRA VALUES PARABRE lista_valores PARCIERRA PUNTO_COMA
+
+         | SELECT lista_campos FROM IDENTIFICADOR PUNTO_COMA  // check
+
+         | SELECT funcide FROM IDENTIFICADOR PUNTO_COMA // check
+
+         | SELECT funcide FROM IDENTIFICADOR PUNTO_COMA // check
+
+         | SELECT lista_campos FROM IDENTIFICADOR WHERE condiciones PUNTO_COMA // check
+
+         | SELECT lista_campos FROM IDENTIFICADOR GROUPBY IDENTIFICADOR PUNTO_COMA // check
+
+         | SELECT lista_campos FROM IDENTIFICADOR ORDERBY identificadores orden PUNTO_COMA // check
+
+         | SELECT lista_campos FROM IDENTIFICADOR WHERE condiciones GROUPBY IDENTIFICADOR ORDERBY identificadores orden PUNTO_COMA // 
+
+         | INSERT INTO IDENTIFICADOR PARABRE lista_campos PARCIERRA VALUES PARABRE lista_valores PARCIERRA PUNTO_COMA //
+
          | DELETE FROM IDENTIFICADOR WHERE condicion PUNTO_COMA
+
          | UPDATE IDENTIFICADOR SET lista_asignaciones WHERE condicion PUNTO_COMA
          ;
 
@@ -54,39 +67,53 @@ lista_columnas: IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
               | lista_columnas COMA IDENTIFICADOR tipo_dato
               ;
 
+lista_campos: ASTERISCO
+            | IDENTIFICADOR
+            | lista_campos COMA IDENTIFICADOR
+            ;
 
 funcide:    funcion PARABRE IDENTIFICADOR PARCIERRA
             | IDENTIFICADOR
             | funcide COMA IDENTIFICADOR
             | funcide COMA funcion PARABRE IDENTIFICADOR PARCIERRA
-;
-
-orden: ASC
-      | DESC
-;
+            ;
+    
 identificadores: IDENTIFICADOR
-                | identificadores COMA IDENTIFICADOR
-                | COMA IDENTIFICADOR
-
+                 | COMA IDENTIFICADOR
+                 | identificadores COMA IDENTIFICADOR
 ;
+
+orden:  ASC
+       | DESC
+        ;
+
+condiciones:  condicion
+             | condicion AND condicion
+             | condicion OR condicion
+             | COMA condicion AND condicion
+             | COMA condicion OR condicion
+             | AND condicion
+             | OR condicion
+         ;
+
+condicion:  valor IGUAL valor
+            | valor DIFERENCIA valor
+            | valor MAYORQUE valor
+            | valor MENORQUE valor
+            | valor MAYORIGUAL valor
+            | valor MENORIGUAL valor
+        ;
+
 funcion: MAX
         | MIN
         | AVG
         | COUNT
-
 ;
 
-caso_where: ASTERISCO
-            | IDENTIFICADOR
-            | caso_where COMA IDENTIFICADOR
+tipo_dato:   VARCHAR 
+            | DECIMAL 
+            | INTERGER
 ;
-tipo_dato: VARCHAR | DECIMAL | INTERGER
-;
-
-lista_campos: ASTERISCO
-            | IDENTIFICADOR
-            | lista_campos COMA IDENTIFICADOR
-            ;
 
 lista_valores: valor
              | lista_valores COMA valor
@@ -102,23 +129,9 @@ lista_asignaciones: IDENTIFICADOR ASIGN valor
                  | lista_asignaciones COMA IDENTIFICADOR ASIGN valor
                  ;
 
-condicion: IDENTIFICADOR IGUAL valor
-         | IDENTIFICADOR DIFERENCIA valor
-         | IDENTIFICADOR MAYORQUE valor
-         | IDENTIFICADOR MENORQUE valor
-         | IDENTIFICADOR MAYORIGUAL valor
-         | IDENTIFICADOR MENORIGUAL valor
-         | condicion AND condicion
-         | condicion OR condicion
-         | COMA IDENTIFICADOR IGUAL valor
-         | COMA IDENTIFICADOR DIFERENCIA valor
-         | COMA IDENTIFICADOR MAYORQUE valor
-         | COMA IDENTIFICADOR MENORQUE valor
-         | COMA IDENTIFICADOR MAYORIGUAL valor
-         | COMA IDENTIFICADOR MENORIGUAL valor
-         | COMA condicion AND condicion
-         | COMA condicion OR condicion
-         ;
+         
+
+
 
 %%
 

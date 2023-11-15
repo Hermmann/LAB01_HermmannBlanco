@@ -1,1 +1,2 @@
-SELECT nombre, MAX(salario) FROM Empleado;
+SELECT nombre, salario, fecha FROM empleados WHERE salario > 500 GROUP BY departamento ORDER BY salario DESC;
+SELECT * FROM empleados WHERE salario > 50000 ;

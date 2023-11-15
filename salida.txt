@@ -1,5 +1,10 @@
-SELECT nombre, MAX(salario) FROM Empleado;
+SELECT nombre, salario, fecha FROM empleados WHERE salario > 500 GROUP BY departamento ORDER BY salario DESC;
 Componentes Léxicos:
-SELECT  id1=nombre  coma=,  MAX  parabre=( id2=salario  paracierr=)  FROM  id3=Empleado  puntcoma=;Análisis Sintáctico:
+SELECT  id1=nombre  coma=,  id2=salario  coma=,  id3=fecha  FROM  id4=empleados  WHERE  id2=salario   mayor>   entero=500  GROUP BY  id5=departamento  ORDER BY  id2=salario  DESC  puntcoma=;Análisis Sintáctico:
+Errores Sintácticos: 0
+
+SELECT * FROM empleados WHERE salario > 50000 ;
+Componentes Léxicos:
+SELECT asterisco= *  FROM  id4=empleados  WHERE  id2=salario   mayor>   entero=50000   puntcoma=;Análisis Sintáctico:
 Errores Sintácticos: 0
 
