@@ -1,2 +1,10 @@
-UPDATE karlos SET karlos = karlos;
-CREATE Table Empleado(nombre VARCHAR(20), cedula INTEGER, salario DECIMAL(2)); 
+CREATE TABLE Estudiantes (CC INTEGER, Nombres VARCHAR(20), Apellidos VARCHAR(20), NoAsign1 INTEGER, NoAsign2 INTEGER, Edad DECIMAL(2), PuntajeIcf INTEGER);
+INSERT INTO Estudiantes VALUES(7123450, 'Alberto Juan', 'Mercado Ruiz', 6, 5, 9.34, 303);
+SELECT CC, MAX(NoAsign1), MIN(NoAsign2) FROM *;
+INSERT INTO Estudiantes VALUES(11011102, 'Maria Sofia', 'Cabrera Iriarte', 4, 4, 8.6, 295); 
+SELECT MAX(), MIN(PuntaIcf) FROM;
+UPDATE FROM Empleado WHERE CC=54321012;
+UPDATE Empleados SET Nombres = 'Alba Rosa', Apellidos = 'Rojas Ramirez' WHERE NoAsign1 >5 AND NoAsign2 < 3;
+
+CREATE TABLE Posicion (CC INTEGER, Cargo VARCHAR(20), Salario DECIMAL(1)));
+INSERT INTO Posicion VALUES(7123450,, 'Analista de credito', 2200000.3);

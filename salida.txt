@@ -1,6 +1,30 @@
-UPDATE  id1=karlos  SET  id1=karlos   asig= =  id1=karlos  puntcoma=;Análisis Sintáctico: 
+CREATE TABLE  id1=Estudiantes   parabre=( id2=CC  INTEGER  coma=,  id3=Nombres  VARCHAR  parabre=(  entero=20  paracierr=)  coma=,  id4=Apellidos  VARCHAR  parabre=(  entero=20  paracierr=)  coma=,  id5=NoAsign1  INTEGER  coma=,  id6=NoAsign2  INTEGER  coma=,  id7=Edad  DECIMAL parabre=(  entero=2  paracierr=)  coma=,  id8=PuntajeIcf  INTEGER  paracierr=)  puntcoma=;Análisis Sintáctico: 
+Errores Sintácticos: 0
+
+INSERT  INTO  id1=Estudiantes  VALUES  parabre=(  entero=7123450  coma=,   cadena='Alberto Juan'  coma=,   cadena='Mercado Ruiz'  coma=,   entero=6  coma=,   entero=5  coma=,   decimal=9.34  coma=,   entero=303  paracierr=)  puntcoma=;Análisis Sintáctico: 
+Errores Sintácticos: 0
+
+SELECT  id2=CC  coma=,  MAX  parabre=( id5=NoAsign1  paracierr=)  coma=,  MIN  parabre=( id6=NoAsign2  paracierr=)  FROM asterisco= *; Análisis Sintáctico: 
 Errores Sintácticos: 1
 
-CREATE TABLE  id2=Empleado  parabre=( id3=nombre  VARCHAR  parabre=(  entero=20  paracierr=)  coma=,  id4=cedula  INTEGER  coma=,  id5=salario  DECIMAL parabre=(  entero=2  paracierr=)  paracierr=)  puntcoma=; Análisis Sintáctico: 
+INSERT  INTO  id1=Estudiantes  VALUES  parabre=(  entero=11011102  coma=,   cadena='Maria Sofia'  coma=,   cadena='Cabrera Iriarte'  coma=,   entero=4  coma=,   entero=4  coma=,   decimal=8.6  coma=,   entero=295  paracierr=)  puntcoma=; Análisis Sintáctico: 
 Errores Sintácticos: 1
+
+SELECT  MAX  parabre=(  paracierr=) Análisis Sintáctico: 
+Errores Sintácticos: 2
+
+UPDATE  FROM Análisis Sintáctico: 
+Errores Sintácticos: 3
+
+UPDATE  id9=Empleados  SET  id3=Nombres   asig= =   cadena='Alba Rosa'  coma=,  id4=Apellidos   asig= =   cadena='Rojas Ramirez'  WHERE  id5=NoAsign1   mayor>  entero=5  AND  id6=NoAsign2   menor=<   entero=3  puntcoma=;Análisis Sintáctico: 
+Errores Sintácticos: 3
+
+Análisis Sintáctico: 
+Errores Sintácticos: 3
+
+CREATE TABLE  id10=Posicion   parabre=( id2=CC  INTEGER  coma=,  id11=Cargo  VARCHAR  parabre=(  entero=20  paracierr=)  coma=,  id12=Salario  DECIMAL parabre=(  entero=1  paracierr=)  paracierr=)  paracierr=) Análisis Sintáctico: 
+Errores Sintácticos: 4
+
+INSERT  INTO  id10=Posicion  VALUES  parabre=(  entero=7123450  coma=,  coma=, Análisis Sintáctico: 
+Errores Sintácticos: 5
 

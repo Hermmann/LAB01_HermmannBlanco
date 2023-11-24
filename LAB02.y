@@ -16,7 +16,7 @@ int contadorlinea =1;
 
 /* TOKENS comandos SQL*/
 %token CREATETABLE DROPTABLE SELECT WHERE GROUPBY ORDERBY INSERT INTO DELETE UPDATE MAX MIN 
-%token AVG COUNT VALUES FROM SET ASC DESC VARCHAR DECIMAL INTERGER AND OR
+%token AVG COUNT VALUES FROM SET ASC DESC VARCHAR DECIMAL INTEGER AND OR
 
 /* SEPARADORES Y ASTERISCO*/
 %token PARABRE PARCIERRA COMA PUNTO_COMA ASIGN ASTERISCO
@@ -46,13 +46,15 @@ sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
 
          | SELECT funcide FROM IDENTIFICADOR PUNTO_COMA // check
 
-         | SELECT funcide FROM IDENTIFICADOR PUNTO_COMA // check
+         | SELECT IDENTIFICADOR COMA funcide FROM IDENTIFICADOR PUNTO_COMA // check
 
          | SELECT lista_campos FROM IDENTIFICADOR WHERE condiciones PUNTO_COMA // check
 
          | SELECT lista_campos FROM IDENTIFICADOR GROUPBY IDENTIFICADOR PUNTO_COMA // check
 
          | SELECT lista_campos FROM IDENTIFICADOR ORDERBY identificadores orden PUNTO_COMA // check
+         
+         | SELECT lista_campos FROM IDENTIFICADOR WHERE condiciones ORDERBY identificadores orden PUNTO_COMA
 
          | SELECT lista_campos FROM IDENTIFICADOR WHERE condiciones GROUPBY IDENTIFICADOR ORDERBY identificadores orden PUNTO_COMA // 
 
@@ -66,6 +68,7 @@ sentencia: CREATETABLE IDENTIFICADOR PARABRE lista_columnas PARCIERRA PUNTO_COMA
 lista_columnas: IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
               | lista_columnas COMA IDENTIFICADOR tipo_dato PARABRE  ENTERO PARCIERRA
               | lista_columnas COMA IDENTIFICADOR tipo_dato
+              | IDENTIFICADOR tipo_dato
               ;
 
 lista_campos: ASTERISCO
@@ -79,9 +82,9 @@ funcide:    funcion PARABRE IDENTIFICADOR PARCIERRA
             | funcide COMA funcion PARABRE IDENTIFICADOR PARCIERRA
             ;
     
-identificadores: IDENTIFICADOR
-                 | identificadores COMA IDENTIFICADOR
-                 | COMA IDENTIFICADOR
+identificadores: valor
+                 | identificadores COMA valor
+                 | COMA valor
 ;
 
 orden:  ASC
@@ -89,13 +92,13 @@ orden:  ASC
         ;
 
 condiciones:  condicion
-             | condiciones COMA  AND condicion
-             | condiciones COMA  OR condicion
-             | COMA AND condicion
-             | COMA OR condicion
+             | condiciones  AND condicion
+             | condiciones  OR condicion
+             |  AND condicion
+             |  OR condicion
          ;
 
-condicion:  valor IGUAL valor
+condicion:  valor ASIGN valor
             | valor DIFERENCIA valor
             | valor MAYORQUE valor
             | valor MENORQUE valor
@@ -111,7 +114,7 @@ funcion: MAX
 
 tipo_dato:   VARCHAR 
             | DECIMAL 
-            | INTERGER
+            | INTEGER
 ;
 
 valor: IDENTIFICADOR

@@ -86,7 +86,7 @@ ASTERISCO  "*"
 /*IDENTIFICADORES, NUMERO Y CADENA*/
 IDENTIFICADOR         [a-zA-ZáéíóúÁÉÍÓÚ][a-zA-ZáéíóúÁÉÍÓÚ0-9]*
 ENTERO                {DIGITO}({DIGITO})*
-DECIMAL               {DIGITO}{PUNTO}{DIGITO}({DIGITO})*
+DECIMAL               {ENTERO}{PUNTO}{DIGITO}({DIGITO})*
 NUMERO               {ENTERO} | {DECIMAL}
 CADENA           \"[^\n"]*\"|\'[^\n']*\'
 
@@ -116,7 +116,7 @@ ERROR {DIGITO}+{LETRA}+({DIGITO}|{LETRA})*|[^{NUMERO}]{PUNTO}[^{NUMERO}]
 {DESC} { printf("DESC "); } return DESC;
 "VARCHAR" { printf("VARCHAR "); }   return VARCHAR;
 "DECIMAL" { printf("DECIMAL"); }    return DECIMAL;
-"INTEGER" { printf("INTEGER "); }   return INTERGER;
+"INTEGER" { printf("INTEGER "); }   return INTEGER;
 "AND" { printf("AND "); }   return AND;
 "OR" { printf("OR "); } return OR;
 
